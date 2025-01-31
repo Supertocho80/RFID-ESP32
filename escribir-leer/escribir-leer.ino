@@ -15,7 +15,7 @@ MFRC522::MIFARE_Key key;
 
 byte blockAddress1 = 10;
 byte blockAddress2 = 9;
-byte newBlockData1[18] = {"roca.marian23"};
+byte newBlockData1[18] = {"roca.mar23"};
 byte newBlockData2[18] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
 //byte newBlockData[16] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};   // CLEAR DATA
 byte bufferblocksize = 18;
