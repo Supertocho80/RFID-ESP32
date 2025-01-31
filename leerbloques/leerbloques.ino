@@ -19,6 +19,8 @@ byte bufferblocksize = 18;
 byte blockDataRead1[18];
 byte blockDataRead2[18];
 
+
+
 void setup() {
   Serial.begin(115200);  // Initialize serial communication
   while (!Serial);       // Do nothing if no serial port is opened (added for Arduinos based on ATMEGA32U4).
@@ -32,6 +34,8 @@ void setup() {
 }
 
 void loop() {
+  String id_alumno1 = "";  // Variable para concatenar datos del bloque 1
+  String id_alumno2 = "";  // Variable para concatenar datos del bloque 2
   // Check if a new card is present
   if (!mfrc522.PICC_IsNewCardPresent() || !mfrc522.PICC_ReadCardSerial()) {
     delay(500);
@@ -54,7 +58,7 @@ void loop() {
     Serial.println("Read failed.");
   } else {
     for (byte i = 0; i < 16; i++) {
-      Serial.print((char)blockDataRead1[i]);  // Print as character
+      id_alumno1 += (char)blockDataRead1[i];  // Concatenar como String
     }
     
   }
@@ -64,11 +68,11 @@ void loop() {
     Serial.println("Read failed.");
   } else {
     for (byte i = 0; i < 9; i++) {
-      Serial.print((char)blockDataRead2[i]);  // Print as character
+      id_alumno2 += (char)blockDataRead2[i];  // Concatenar como String  // Print as character
     }
 
   }
-  
+  Serial.println(id_alumno1 + id_alumno2);  
   // Halt communication with the card
   mfrc522.PICC_HaltA();
   mfrc522.PCD_StopCrypto1();
